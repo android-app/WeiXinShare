@@ -31,11 +31,11 @@ public class MainActivity extends Activity {
 		File dir = Environment
 				.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM);
 		
-		File file = new File(dir, "/logol.png");
+		File file = new File(dir, "/logo.png");
 		
 		switch (item.getItemId()) {
 		case R.id.action_share1:
-			
+			System.out.println(file.toURI());
 			
 			shareToFriend(file);
 			return true;
@@ -43,6 +43,11 @@ public class MainActivity extends Activity {
 			
 			System.out.println(file.toURI());
 			shareToTimeLine(file);
+			
+			return true;
+		case R.id.action_share3:
+			File video = new File(dir, "/test.mp4");
+			shareToFriendVideo(video);
 			
 			return true;
 		default:
@@ -63,6 +68,20 @@ public class MainActivity extends Activity {
 		intent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(file));
 		startActivity(intent);
 	}
+	
+	private void shareToFriendVideo(File file) {
+		
+		Intent intent = new Intent();
+		ComponentName comp = new ComponentName("com.tencent.mm",
+				"com.tencent.mm.ui.tools.ShareImgUI");
+		intent.setComponent(comp);
+		intent.setAction("android.intent.action.SEND");
+		intent.setType("video/*");
+		//intent.setFlags(0x3000001);
+		intent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(file));
+		startActivity(intent);
+	}
+	
 	private void shareToTimeLine(File file) {
 		Intent intent = new Intent();
 		ComponentName comp = new ComponentName("com.tencent.mm",

@@ -4,6 +4,7 @@
     <string name="app_name">微信分享</string>
     <string name="action_share1">发送给朋友</string>
     <string name="action_share2">发送到朋友圈</string>
+    <string name="action_share3">发送视频给朋友</string>
     <string name="hello_world">Hello world!</string>
 
 </resources>
